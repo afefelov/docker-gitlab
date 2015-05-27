@@ -12,10 +12,10 @@ gitlab:
     - redis:redisio
     - postgresql:postgresql
   ports:
-    - "10080:80"
+    - "80"
     - "10022:22"
   environment:
-    - TZ=Asia/Kolkata
+    - TZ=Asia/Yekaterinburg
     - SMTP_ENABLED=false
     - SMTP_DOMAIN=www.example.com
     - SMTP_HOST=smtp.gmail.com
@@ -24,14 +24,17 @@ gitlab:
     - SMTP_PASS=password
     - SMTP_STARTTLS=true
     - SMTP_AUTHENTICATION=login
-    - GITLAB_TIMEZONE=Kolkata
+    - GITLAB_TIMEZONE=Yekaterinburg
     - GITLAB_HOST=localhost
-    - GITLAB_PORT=10080
+    - GITLAB_PORT=80
     - GITLAB_SSH_PORT=10022
     - GITLAB_EMAIL=admin@example.com
     - GITLAB_EMAIL_REPLY_TO=noreply@example.com
     - GITLAB_BACKUPS=daily
     - GITLAB_BACKUP_TIME=01:00
+    - SIDEKIQ_CONCURRENCY=2
+    - UNICORN_WORKERS=2
+    - GITLAB_BACKUPS=daily
   volumes:
     - /srv/docker/gitlab/gitlab:/home/git/data
 redis:
